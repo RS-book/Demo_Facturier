@@ -1,0 +1,12 @@
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\bin\Debug\FacturierDatabase.mdf
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\bin\Debug\FacturierDatabase_log.ldf
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\bin\Debug\DemoFacturier.exe.config
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\bin\Debug\DemoFacturier.exe
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\bin\Debug\DemoFacturier.pdb
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\obj\Debug\DemoFacturier.csprojAssemblyReference.cache
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\obj\Debug\DemoFacturier.Properties.Resources.resources
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\obj\Debug\DemoFacturier.csproj.GenerateResource.cache
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\obj\Debug\DemoFacturier.csproj.CoreCompileInputs.cache
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\obj\Debug\DemoFacturier.exe
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\obj\Debug\DemoFacturier.pdb
+D:\Users\Rearith\Documents\book\Demo_Facturier\DemoFacturier\obj\Debug\DemoFacturier.FormP.resources
