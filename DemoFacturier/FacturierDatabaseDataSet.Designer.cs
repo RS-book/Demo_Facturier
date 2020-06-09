@@ -560,6 +560,8 @@ namespace DemoFacturier {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIdAnimal}, true));
                 this.columnAnNaiss.MaxLength = 50;
+                this.columnFriand.AllowDBNull = false;
+                this.columnParfum.AllowDBNull = false;
                 this.columnParfum.MaxLength = 50;
                 this.columnRemarques.MaxLength = 50;
                 this.columnNom.AllowDBNull = false;
@@ -1170,12 +1172,7 @@ namespace DemoFacturier {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Friand {
                 get {
-                    try {
-                        return ((bool)(this[this.tableAnimaux.FriandColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Friand\' dans la table \'Animaux\' est DBNull.", e);
-                    }
+                    return ((bool)(this[this.tableAnimaux.FriandColumn]));
                 }
                 set {
                     this[this.tableAnimaux.FriandColumn] = value;
@@ -1186,12 +1183,7 @@ namespace DemoFacturier {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Parfum {
                 get {
-                    try {
-                        return ((string)(this[this.tableAnimaux.ParfumColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("La valeur pour la colonne \'Parfum\' dans la table \'Animaux\' est DBNull.", e);
-                    }
+                    return ((string)(this[this.tableAnimaux.ParfumColumn]));
                 }
                 set {
                     this[this.tableAnimaux.ParfumColumn] = value;
@@ -1295,30 +1287,6 @@ namespace DemoFacturier {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetAnNaissNull() {
                 this[this.tableAnimaux.AnNaissColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsFriandNull() {
-                return this.IsNull(this.tableAnimaux.FriandColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetFriandNull() {
-                this[this.tableAnimaux.FriandColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsParfumNull() {
-                return this.IsNull(this.tableAnimaux.ParfumColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetParfumNull() {
-                this[this.tableAnimaux.ParfumColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1890,7 +1858,7 @@ namespace DemoFacturier.FacturierDatabaseDataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Animaux] WHERE (([Nom] = @Original_Nom) AND ([Proprietaire] = @Original_Proprietaire) AND ([Espece] = @Original_Espece) AND ([IdAnimal] = @Original_IdAnimal) AND ((@IsNull_Race = 1 AND [Race] IS NULL) OR ([Race] = @Original_Race)) AND ((@IsNull_AnNaiss = 1 AND [AnNaiss] IS NULL) OR ([AnNaiss] = @Original_AnNaiss)) AND ((@IsNull_Friand = 1 AND [Friand] IS NULL) OR ([Friand] = @Original_Friand)) AND ((@IsNull_Parfum = 1 AND [Parfum] IS NULL) OR ([Parfum] = @Original_Parfum)) AND ((@IsNull_Remarques = 1 AND [Remarques] IS NULL) OR ([Remarques] = @Original_Remarques)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Animaux] WHERE (([Nom] = @Original_Nom) AND ([Proprietaire] = @Original_Proprietaire) AND ([Espece] = @Original_Espece) AND ([IdAnimal] = @Original_IdAnimal) AND ((@IsNull_Race = 1 AND [Race] IS NULL) OR ([Race] = @Original_Race)) AND ((@IsNull_AnNaiss = 1 AND [AnNaiss] IS NULL) OR ([AnNaiss] = @Original_AnNaiss)) AND ([Friand] = @Original_Friand) AND ([Parfum] = @Original_Parfum) AND ((@IsNull_Remarques = 1 AND [Remarques] IS NULL) OR ([Remarques] = @Original_Remarques)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Nom", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nom", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Proprietaire", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Proprietaire", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1900,9 +1868,7 @@ namespace DemoFacturier.FacturierDatabaseDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Race", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Race", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AnNaiss", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AnNaiss", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AnNaiss", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AnNaiss", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Friand", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Friand", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Friand", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Friand", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Parfum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Parfum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Parfum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Parfum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Remarques", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remarques", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Remarques", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remarques", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1922,7 +1888,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Remarques", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remarques", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Animaux] SET [Nom] = @Nom, [Proprietaire] = @Proprietaire, [Espece] = @Espece, [IdAnimal] = @IdAnimal, [Race] = @Race, [AnNaiss] = @AnNaiss, [Friand] = @Friand, [Parfum] = @Parfum, [Remarques] = @Remarques WHERE (([Nom] = @Original_Nom) AND ([Proprietaire] = @Original_Proprietaire) AND ([Espece] = @Original_Espece) AND ([IdAnimal] = @Original_IdAnimal) AND ((@IsNull_Race = 1 AND [Race] IS NULL) OR ([Race] = @Original_Race)) AND ((@IsNull_AnNaiss = 1 AND [AnNaiss] IS NULL) OR ([AnNaiss] = @Original_AnNaiss)) AND ((@IsNull_Friand = 1 AND [Friand] IS NULL) OR ([Friand] = @Original_Friand)) AND ((@IsNull_Parfum = 1 AND [Parfum] IS NULL) OR ([Parfum] = @Original_Parfum)) AND ((@IsNull_Remarques = 1 AND [Remarques] IS NULL) OR ([Remarques] = @Original_Remarques)));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Animaux] SET [Nom] = @Nom, [Proprietaire] = @Proprietaire, [Espece] = @Espece, [IdAnimal] = @IdAnimal, [Race] = @Race, [AnNaiss] = @AnNaiss, [Friand] = @Friand, [Parfum] = @Parfum, [Remarques] = @Remarques WHERE (([Nom] = @Original_Nom) AND ([Proprietaire] = @Original_Proprietaire) AND ([Espece] = @Original_Espece) AND ([IdAnimal] = @Original_IdAnimal) AND ((@IsNull_Race = 1 AND [Race] IS NULL) OR ([Race] = @Original_Race)) AND ((@IsNull_AnNaiss = 1 AND [AnNaiss] IS NULL) OR ([AnNaiss] = @Original_AnNaiss)) AND ([Friand] = @Original_Friand) AND ([Parfum] = @Original_Parfum) AND ((@IsNull_Remarques = 1 AND [Remarques] IS NULL) OR ([Remarques] = @Original_Remarques)));
 SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remarques FROM Animaux WHERE (IdAnimal = @IdAnimal)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nom", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Nom", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1942,9 +1908,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Race", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Race", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AnNaiss", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AnNaiss", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AnNaiss", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AnNaiss", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Friand", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Friand", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Friand", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Friand", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Parfum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Parfum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Parfum", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Parfum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Remarques", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remarques", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Remarques", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Remarques", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2025,7 +1989,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Nom, int Original_Proprietaire, string Original_Espece, int Original_IdAnimal, string Original_Race, string Original_AnNaiss, global::System.Nullable<bool> Original_Friand, string Original_Parfum, string Original_Remarques) {
+        public virtual int Delete(string Original_Nom, int Original_Proprietaire, string Original_Espece, int Original_IdAnimal, string Original_Race, string Original_AnNaiss, bool Original_Friand, string Original_Parfum, string Original_Remarques) {
             if ((Original_Nom == null)) {
                 throw new global::System.ArgumentNullException("Original_Nom");
             }
@@ -2056,29 +2020,20 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_AnNaiss));
             }
-            if ((Original_Friand.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_Friand.Value));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((bool)(Original_Friand));
+            if ((Original_Parfum == null)) {
+                throw new global::System.ArgumentNullException("Original_Parfum");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Parfum));
             }
-            if ((Original_Parfum == null)) {
+            if ((Original_Remarques == null)) {
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_Parfum));
-            }
-            if ((Original_Remarques == null)) {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_Remarques));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_Remarques));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2100,7 +2055,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Nom, int Proprietaire, string Espece, int IdAnimal, string Race, string AnNaiss, global::System.Nullable<bool> Friand, string Parfum, string Remarques) {
+        public virtual int Insert(string Nom, int Proprietaire, string Espece, int IdAnimal, string Race, string AnNaiss, bool Friand, string Parfum, string Remarques) {
             if ((Nom == null)) {
                 throw new global::System.ArgumentNullException("Nom");
             }
@@ -2127,14 +2082,9 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(AnNaiss));
             }
-            if ((Friand.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Friand.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Friand));
             if ((Parfum == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Parfum");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Parfum));
@@ -2172,7 +2122,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
                     int IdAnimal, 
                     string Race, 
                     string AnNaiss, 
-                    global::System.Nullable<bool> Friand, 
+                    bool Friand, 
                     string Parfum, 
                     string Remarques, 
                     string Original_Nom, 
@@ -2181,7 +2131,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
                     int Original_IdAnimal, 
                     string Original_Race, 
                     string Original_AnNaiss, 
-                    global::System.Nullable<bool> Original_Friand, 
+                    bool Original_Friand, 
                     string Original_Parfum, 
                     string Original_Remarques) {
             if ((Nom == null)) {
@@ -2210,14 +2160,9 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(AnNaiss));
             }
-            if ((Friand.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Friand.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Friand));
             if ((Parfum == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Parfum");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Parfum));
@@ -2258,29 +2203,20 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_AnNaiss));
             }
-            if ((Original_Friand.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_Friand.Value));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_Friand));
+            if ((Original_Parfum == null)) {
+                throw new global::System.ArgumentNullException("Original_Parfum");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Parfum));
             }
-            if ((Original_Parfum == null)) {
+            if ((Original_Remarques == null)) {
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Parfum));
-            }
-            if ((Original_Remarques == null)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Remarques));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Remarques));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2308,7 +2244,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
                     string Espece, 
                     string Race, 
                     string AnNaiss, 
-                    global::System.Nullable<bool> Friand, 
+                    bool Friand, 
                     string Parfum, 
                     string Remarques, 
                     string Original_Nom, 
@@ -2317,7 +2253,7 @@ SELECT Nom, Proprietaire, Espece, IdAnimal, Race, AnNaiss, Friand, Parfum, Remar
                     int Original_IdAnimal, 
                     string Original_Race, 
                     string Original_AnNaiss, 
-                    global::System.Nullable<bool> Original_Friand, 
+                    bool Original_Friand, 
                     string Original_Parfum, 
                     string Original_Remarques) {
             return this.Update(Nom, Proprietaire, Espece, Original_IdAnimal, Race, AnNaiss, Friand, Parfum, Remarques, Original_Nom, Original_Proprietaire, Original_Espece, Original_IdAnimal, Original_Race, Original_AnNaiss, Original_Friand, Original_Parfum, Original_Remarques);

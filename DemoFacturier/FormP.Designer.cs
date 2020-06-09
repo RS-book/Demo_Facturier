@@ -161,6 +161,7 @@
             this.buttonDeleteC.TabIndex = 10;
             this.buttonDeleteC.Text = "Supprimer (Client)";
             this.buttonDeleteC.UseVisualStyleBackColor = true;
+            this.buttonDeleteC.Click += new System.EventHandler(this.SupprimerC);
             // 
             // comboBox_listA
             // 
@@ -431,7 +432,6 @@
             this.ChampMobile2.Name = "ChampMobile2";
             this.ChampMobile2.Size = new System.Drawing.Size(223, 20);
             this.ChampMobile2.TabIndex = 15;
-            this.ChampMobile2.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // ChampMobile1
             // 
@@ -439,7 +439,6 @@
             this.ChampMobile1.Name = "ChampMobile1";
             this.ChampMobile1.Size = new System.Drawing.Size(223, 20);
             this.ChampMobile1.TabIndex = 14;
-            this.ChampMobile1.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // ChampTelPrinc
             // 
@@ -447,7 +446,6 @@
             this.ChampTelPrinc.Name = "ChampTelPrinc";
             this.ChampTelPrinc.Size = new System.Drawing.Size(223, 20);
             this.ChampTelPrinc.TabIndex = 13;
-            this.ChampTelPrinc.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // label15
             // 
@@ -509,7 +507,6 @@
             this.ChampPrenom2.Name = "ChampPrenom2";
             this.ChampPrenom2.Size = new System.Drawing.Size(223, 20);
             this.ChampPrenom2.TabIndex = 6;
-            this.ChampPrenom2.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // ChampNom2
             // 
@@ -517,7 +514,6 @@
             this.ChampNom2.Name = "ChampNom2";
             this.ChampNom2.Size = new System.Drawing.Size(223, 20);
             this.ChampNom2.TabIndex = 5;
-            this.ChampNom2.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // ChampPrenom1
             // 
@@ -525,7 +521,6 @@
             this.ChampPrenom1.Name = "ChampPrenom1";
             this.ChampPrenom1.Size = new System.Drawing.Size(223, 20);
             this.ChampPrenom1.TabIndex = 4;
-            this.ChampPrenom1.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // ChampNom1
             // 
@@ -533,7 +528,6 @@
             this.ChampNom1.Name = "ChampNom1";
             this.ChampNom1.Size = new System.Drawing.Size(223, 20);
             this.ChampNom1.TabIndex = 3;
-            this.ChampNom1.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // label2
             // 
@@ -578,7 +572,6 @@
             this.ChampVille.Name = "ChampVille";
             this.ChampVille.Size = new System.Drawing.Size(115, 20);
             this.ChampVille.TabIndex = 9;
-            this.ChampVille.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // label12
             // 
@@ -595,7 +588,6 @@
             this.ChampCodePost.Name = "ChampCodePost";
             this.ChampCodePost.Size = new System.Drawing.Size(58, 20);
             this.ChampCodePost.TabIndex = 7;
-            this.ChampCodePost.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // label11
             // 
@@ -612,7 +604,6 @@
             this.ChampCpl.Name = "ChampCpl";
             this.ChampCpl.Size = new System.Drawing.Size(250, 20);
             this.ChampCpl.TabIndex = 5;
-            this.ChampCpl.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // label10
             // 
@@ -629,7 +620,6 @@
             this.ChampRue.Name = "ChampRue";
             this.ChampRue.Size = new System.Drawing.Size(169, 20);
             this.ChampRue.TabIndex = 3;
-            this.ChampRue.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // label9
             // 
@@ -646,7 +636,6 @@
             this.ChampN.Name = "ChampN";
             this.ChampN.Size = new System.Drawing.Size(42, 20);
             this.ChampN.TabIndex = 1;
-            this.ChampN.TextChanged += new System.EventHandler(this.MajChampC);
             // 
             // label8
             // 

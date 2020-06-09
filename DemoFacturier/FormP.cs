@@ -28,18 +28,20 @@ namespace DemoFacturier
             listeRecherche = new List<FacturierDatabaseDataSet.ClientsRow>();
         }
 
-        private FacturierDatabaseDataSet.ClientsDataTable DBClients;
-        private FacturierDatabaseDataSet.AnimauxDataTable DBAnimaux;
-        private ClientsTableAdapter clientsTableAdapter;
-        private AnimauxTableAdapter animauxTableAdapter;
+        private readonly FacturierDatabaseDataSet.ClientsDataTable DBClients;
+        private readonly FacturierDatabaseDataSet.AnimauxDataTable DBAnimaux;
+        private readonly ClientsTableAdapter clientsTableAdapter;
+        private readonly AnimauxTableAdapter animauxTableAdapter;
 
         private Client currentClient;
-        private List<FacturierDatabaseDataSet.ClientsRow> listeRecherche;
+        private Animal currentAnimal;
+        private readonly List<FacturierDatabaseDataSet.ClientsRow> listeRecherche;
 
         private void RechercheC(object sender, EventArgs e)
         {
             Regex rx = new Regex(input_rechercheClient.Text, RegexOptions.IgnoreCase);
-            List<string> resC = new List<string>();            
+            List<string> resC = new List<string>();
+            listeRecherche.Clear();
             foreach (FacturierDatabaseDataSet.ClientsRow row in DBClients.Rows)
             {
                 if (rx.IsMatch(row.Nom1) || rx.IsMatch(row.TelPrinc))
@@ -50,6 +52,7 @@ namespace DemoFacturier
                     resC.Add(result);
                     listeRecherche.Add(row);
                 }
+                //idem avec nom 2, autres critères ?
             }
             foreach(FacturierDatabaseDataSet.AnimauxRow row in DBAnimaux.Rows)
             {
@@ -106,27 +109,35 @@ namespace DemoFacturier
 
         private void ChargerClient(object sender, EventArgs e)
         {
-            currentClient = new Client(listeRecherche[comboBox_searchC_res.SelectedIndex],DBAnimaux);
-            //update contenu boxes from client
-            //enable onglet client
-            buttonEditC.Text = "Enregistrer modifications";
-            buttonEditC.Enabled = true;
-            //populate animaux
-            //enable animaux
+            if (ConfirmEditCnotsaved())
+            {
+                currentClient = new Client(listeRecherche[comboBox_searchC_res.SelectedIndex], DBAnimaux, ChampNom1, ChampNom2, ChampPrenom1, ChampPrenom2, ChampN, ChampRue, ChampCpl, ChampCodePost, ChampVille, ChampTelPrinc, ChampMobile1, ChampMobile2);
+                currentClient.FillClientChamps();
+                groupBoxInfoClient.Enabled = true;
+                buttonEditC.Text = "Enregistrer modifications";
+                buttonEditC.Enabled = true;
+                buttonDeleteC.Enabled = true;
+                //populate animaux
+                //enable liste animaux
+            }
         }
 
         private void CreerClient(object sender, EventArgs e)
         {
-            currentClient = new Client(DBClients);
-            //viderboxes (update from client vide)
-            //enable onglet client
-            buttonEditC.Text = "Créer le client";
-            buttonEditC.Enabled = true;
+            if (ConfirmEditCnotsaved())
+            {
+                currentClient = new Client(ChampNom1, ChampNom2, ChampPrenom1, ChampPrenom2, ChampN, ChampRue, ChampCpl, ChampCodePost, ChampVille, ChampTelPrinc, ChampMobile1, ChampMobile2);
+                currentClient.ClearClientChamps();
+                groupBoxInfoClient.Enabled = true;
+                buttonEditC.Text = "Créer le client";
+                buttonEditC.Enabled = true;
+                buttonDeleteC.Enabled = false;
+            }
         }
 
         private void EditClient(object sender, EventArgs e)
         {
-            //disableboxes
+            groupBoxInfoClient.Enabled = false;
             if (currentClient.CheckIfValid())
             {
                 if (currentClient.IsNew == true)
@@ -134,25 +145,49 @@ namespace DemoFacturier
                     currentClient.AddClientToDB(DBClients);
                     currentClient.IsNew = false;
                     buttonEditC.Text = "Enregistrer modifications";
-                    //enable animaux
+                    buttonDeleteC.Enabled = true;
+                    //enable créer animal
+                    MessageBox.Show("Nouveau client créé.", "Tâche complétée", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    currentClient.EditClientInDB(DBClients);                    
+                    currentClient.EditClientInDB(DBClients);
+                    MessageBox.Show("Informations client modifiées.", "Tâche complétée", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                 }
-                //popup ok
                 clientsTableAdapter.Update(DBClients);
             }
             else
-            { MessageBox.Show("Erreur : Informations obligatoires manquantes."); }
-            //enableboxes
+            { MessageBox.Show("Erreur : Informations obligatoires manquantes.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            groupBoxInfoClient.Enabled = true;
         }
 
-        private void MajChampC(object sender, EventArgs e)
+        private bool ConfirmEditCnotsaved()
         {
-            currentClient.Nom1 = ChampNom1.Text; 
-            currentClient.Prenom1 = ChampPrenom1.Text;
-            //répliquer pour reste des champs
+            if (currentClient.WereChangesToCMade() == true)
+            {
+                if (MessageBox.Show("Les modifications non enregistrées seront perdues, continuer ?", "Demande de confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void SupprimerC(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce client ? Cela supprimera également les animaux associés.", "Demande de confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                //supprimer animaux associés, update
+                //supprimer client de BDD, update
+                //disable champs + bouton edit
+            }
         }
     }
 }
