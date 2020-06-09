@@ -143,6 +143,7 @@ namespace DemoFacturier
                 if (currentClient.IsNew == true)
                 {
                     currentClient.AddClientToDB(DBClients);
+                    clientsTableAdapter.Update(DBClients);
                     currentClient.IsNew = false;
                     buttonEditC.Text = "Enregistrer modifications";
                     buttonDeleteC.Enabled = true;
@@ -152,6 +153,7 @@ namespace DemoFacturier
                 else
                 {
                     currentClient.EditClientInDB(DBClients);
+                    clientsTableAdapter.Update(DBClients);
                     MessageBox.Show("Informations client modifiées.", "Tâche complétée", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                 }
                 clientsTableAdapter.Update(DBClients);
@@ -186,7 +188,7 @@ namespace DemoFacturier
             {
                 //supprimer animaux associés, update
                 //supprimer client de BDD, update
-                //disable champs + bouton edit
+                //clear & disable champs + bouton edit
             }
         }
     }
