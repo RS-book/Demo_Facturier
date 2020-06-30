@@ -41,7 +41,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.ChampARace = new System.Windows.Forms.TextBox();
             this.ChampAParfum = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonLastvisits = new System.Windows.Forms.Button();
             this.checkBoxParfum = new System.Windows.Forms.CheckBox();
             this.checkBoxFriand = new System.Windows.Forms.CheckBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -151,6 +151,7 @@
             this.buttonDeleteA.TabIndex = 11;
             this.buttonDeleteA.Text = "Supprimer (Animal)";
             this.buttonDeleteA.UseVisualStyleBackColor = true;
+            this.buttonDeleteA.Click += new System.EventHandler(this.DeleteAnimal);
             // 
             // buttonDeleteC
             // 
@@ -171,6 +172,7 @@
             this.comboBox_listA.Name = "comboBox_listA";
             this.comboBox_listA.Size = new System.Drawing.Size(309, 21);
             this.comboBox_listA.TabIndex = 9;
+            this.comboBox_listA.SelectedIndexChanged += new System.EventHandler(this.LoadAnimal);
             // 
             // comboBox_searchC_res
             // 
@@ -190,6 +192,7 @@
             this.button_editA.TabIndex = 7;
             this.button_editA.Text = "Enregistrer modifications";
             this.button_editA.UseVisualStyleBackColor = true;
+            this.button_editA.Click += new System.EventHandler(this.EditAnimal);
             // 
             // button_newA
             // 
@@ -200,13 +203,14 @@
             this.button_newA.TabIndex = 6;
             this.button_newA.Text = "Nouvel animal";
             this.button_newA.UseVisualStyleBackColor = true;
+            this.button_newA.Click += new System.EventHandler(this.CreerAnimal);
             // 
             // groupBoxInfoAnimal
             // 
             this.groupBoxInfoAnimal.Controls.Add(this.label18);
             this.groupBoxInfoAnimal.Controls.Add(this.ChampARace);
             this.groupBoxInfoAnimal.Controls.Add(this.ChampAParfum);
-            this.groupBoxInfoAnimal.Controls.Add(this.button1);
+            this.groupBoxInfoAnimal.Controls.Add(this.buttonLastvisits);
             this.groupBoxInfoAnimal.Controls.Add(this.checkBoxParfum);
             this.groupBoxInfoAnimal.Controls.Add(this.checkBoxFriand);
             this.groupBoxInfoAnimal.Controls.Add(this.richTextBox1);
@@ -251,14 +255,14 @@
             this.ChampAParfum.Size = new System.Drawing.Size(86, 20);
             this.ChampAParfum.TabIndex = 17;
             // 
-            // button1
+            // buttonLastvisits
             // 
-            this.button1.Location = new System.Drawing.Point(183, 137);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 40);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Dernières visites";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLastvisits.Location = new System.Drawing.Point(183, 137);
+            this.buttonLastvisits.Name = "buttonLastvisits";
+            this.buttonLastvisits.Size = new System.Drawing.Size(120, 40);
+            this.buttonLastvisits.TabIndex = 16;
+            this.buttonLastvisits.Text = "Dernières visites";
+            this.buttonLastvisits.UseVisualStyleBackColor = true;
             // 
             // checkBoxParfum
             // 
@@ -269,6 +273,7 @@
             this.checkBoxParfum.TabIndex = 15;
             this.checkBoxParfum.Text = "Parfum :";
             this.checkBoxParfum.UseVisualStyleBackColor = true;
+            this.checkBoxParfum.CheckedChanged += new System.EventHandler(this.ToggleChampP);
             // 
             // checkBoxFriand
             // 
@@ -330,9 +335,9 @@
             this.radioButtonAutre.Name = "radioButtonAutre";
             this.radioButtonAutre.Size = new System.Drawing.Size(56, 17);
             this.radioButtonAutre.TabIndex = 6;
-            this.radioButtonAutre.TabStop = true;
             this.radioButtonAutre.Text = "Autre :";
             this.radioButtonAutre.UseVisualStyleBackColor = true;
+            this.radioButtonAutre.CheckedChanged += new System.EventHandler(this.ToggleChampE);
             // 
             // radioButtonChat
             // 
@@ -341,13 +346,13 @@
             this.radioButtonChat.Name = "radioButtonChat";
             this.radioButtonChat.Size = new System.Drawing.Size(47, 17);
             this.radioButtonChat.TabIndex = 5;
-            this.radioButtonChat.TabStop = true;
             this.radioButtonChat.Text = "Chat";
             this.radioButtonChat.UseVisualStyleBackColor = true;
             // 
             // radioButtonChien
             // 
             this.radioButtonChien.AutoSize = true;
+            this.radioButtonChien.Checked = true;
             this.radioButtonChien.Location = new System.Drawing.Point(10, 19);
             this.radioButtonChien.Name = "radioButtonChien";
             this.radioButtonChien.Size = new System.Drawing.Size(52, 17);
@@ -764,7 +769,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox checkBoxParfum;
         private System.Windows.Forms.CheckBox checkBoxFriand;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLastvisits;
         private System.Windows.Forms.TextBox ChampAParfum;
         private System.Windows.Forms.Button buttonDeleteC;
         private System.Windows.Forms.Button buttonDeleteA;

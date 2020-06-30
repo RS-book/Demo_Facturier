@@ -45,10 +45,6 @@ namespace DemoFacturier
             Mobile1 = telmob1;
             Mobile2 = telmob2;
             Animals = new List<Animal>();
-            foreach (FacturierDatabaseDataSet.AnimauxRow animal in row.GetAnimauxRows())
-            {
-                Animals.Add(new Animal(animal));
-            }
         }
 
         public bool IsNew { get; set; }
@@ -80,7 +76,7 @@ namespace DemoFacturier
         {
             InfosClient = DBClients.NewClientsRow();
             InfosClient.BeginEdit();
-            InfosClient.IdClient = DBClients.Rows.Count + 1;
+            InfosClient.IdClient = DBClients.Rows[DBClients.Rows.Count - 1].Field<int>("IdClient") + 1;
             InfosClient.Nom1 = this.Nom1.Text;
             if (this.Nom2.Text == "") { InfosClient.SetNom2Null(); } else { InfosClient.Nom2 = this.Nom2.Text; }
             if (this.Prenom1.Text == "") { InfosClient.SetPrenom1Null(); } else { InfosClient.Prenom1 = this.Prenom1.Text; }
@@ -97,9 +93,10 @@ namespace DemoFacturier
             DBClients.AddClientsRow(InfosClient);
         }
 
-        public void EditClientInDB(FacturierDatabaseDataSet.ClientsDataTable DBClients)
+        public void EditClientInDB()
         {
             InfosClient.BeginEdit();
+            InfosClient.Nom1 = this.Nom1.Text;
             if (this.Nom2.Text == "") { InfosClient.SetNom2Null(); } else { InfosClient.Nom2 = this.Nom2.Text; }
             if (this.Prenom1.Text == "") { InfosClient.SetPrenom1Null(); } else { InfosClient.Prenom1 = this.Prenom1.Text; }
             if (this.Prenom2.Text == "") { InfosClient.SetPrenom2Null(); } else { InfosClient.Prenom2 = this.Prenom2.Text; }
@@ -162,6 +159,14 @@ namespace DemoFacturier
             if (IsNew || InfosClient.IsMobile1Null()) { if (Mobile1.Text != "") { result = true; } } else { if (Mobile1.Text != InfosClient.Mobile1) { result = true; } }
             if (IsNew || InfosClient.IsMobile2Null()) { if (Mobile2.Text != "") { result = true; } } else { if (Mobile2.Text != InfosClient.Mobile2) { result = true; } }
             return result;
+        }
+
+        public void DeleteCFromDB()
+        {
+            if(!IsNew)
+            {
+                InfosClient.Delete();
+            }
         }
     }
 }
