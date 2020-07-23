@@ -9,164 +9,111 @@ using System.Windows.Forms;
 
 namespace DemoFacturier
 {
-    class Client
+    public class Client
     {
-        public Client(TextBox name1, TextBox name2, TextBox prename1, TextBox prename2, TextBox num, TextBox street, TextBox cpl, TextBox postcode, TextBox city, TextBox maintel, TextBox telmob1, TextBox telmob2)
+        public Client()
         {
             IsNew = true;
-            Nom1 = name1;
-            Nom2 = name2;
-            Prenom1 = prename1;
-            Prenom2 = prename2;
-            NumAdr = num;
-            Rue = street;
-            Cplmt = cpl;
-            Ville = city;
-            CodePost = postcode;
-            TelPrinc = maintel;
-            Mobile1 = telmob1;
-            Mobile2 = telmob2;
+            Id = -1;
+            Nom1 = "";
+            Nom2 = "";
+            Prenom1 = "";
+            Prenom2 = "";
+            NumAdr = "";
+            Rue = "";
+            Cplmt = "";
+            Ville = "";
+            CodePost = "";
+            TelPrinc = "";
+            Mobile1 = "";
+            Mobile2 = "";
             Animals = new List<Animal>();
         }
-        public Client(FacturierDatabaseDataSet.ClientsRow row, FacturierDatabaseDataSet.AnimauxDataTable animaux, TextBox name1, TextBox name2, TextBox prename1, TextBox prename2, TextBox num, TextBox street, TextBox cpl, TextBox postcode, TextBox city, TextBox maintel, TextBox telmob1, TextBox telmob2)
+        public Client(FacturierDatabaseDataSet.ClientsRow row)
         {
             IsNew = false;
-            InfosClient = row;
-            Nom1 = name1;
-            Nom2 = name2;
-            Prenom1 = prename1;
-            Prenom2 = prename2;
-            NumAdr = num;
-            Rue = street;
-            Cplmt = cpl;
-            Ville = city;
-            CodePost = postcode;
-            TelPrinc = maintel;
-            Mobile1 = telmob1;
-            Mobile2 = telmob2;
+            Id = row.IdClient;
+            Nom1 = row.Nom1;
+            if (row.IsNom2Null()) { Nom2 = ""; } else { Nom2 = row.Nom2; }
+            if (row.IsPrenom1Null()) { Prenom1 = ""; } else { Prenom1 = row.Prenom1; }
+            if (row.IsPrenom2Null()) { Prenom2 = ""; } else { Prenom2 = row.Prenom2; }
+            if (row.IsNumAdrNull()) { NumAdr = ""; } else { NumAdr = row.NumAdr; }
+            if (row.IsRueNull()) { Rue = ""; } else { Rue = row.Rue; }
+            if (row.IsCplmtNull()) { Cplmt = ""; } else { Cplmt = row.Cplmt; }
+            if (row.IsVilleNull()) { Ville = ""; } else { Ville = row.Ville; }
+            if (row.IsCodePostNull()) { CodePost = ""; } else { CodePost = row.CodePost; }
+            TelPrinc = row.TelPrinc;
+            if (row.IsMobile1Null()) { Mobile1 = ""; } else { Mobile1 = row.Mobile1; }
+            if (row.IsMobile2Null()) { Mobile2 = ""; } else { Mobile2 = row.Mobile2; }
             Animals = new List<Animal>();
+            foreach(FacturierDatabaseDataSet.AnimauxRow animal in row.GetAnimauxRows())
+            {
+                Animals.Add(new Animal(animal));
+            }
         }
 
         public bool IsNew { get; set; }
 
-        private readonly TextBox Nom1;
-        private readonly TextBox Prenom1;
-        private readonly TextBox Nom2;
-        private readonly TextBox Prenom2;
-        private readonly TextBox NumAdr;
-        private readonly TextBox Rue;
-        private readonly TextBox Cplmt;
-        private readonly TextBox Ville;
-        private readonly TextBox CodePost;
-        private readonly TextBox TelPrinc;
-        private readonly TextBox Mobile1;
-        private readonly TextBox Mobile2;
-        private FacturierDatabaseDataSet.ClientsRow InfosClient;
+        public int Id { get; set; }
+        public string Nom1 { get; set; }
+        public string Prenom1 { get; set; }
+        public string Nom2 { get; set; }
+        public string Prenom2 { get; set; }
+        public string NumAdr { get; set; }
+        public string Rue { get; set; }
+        public string Cplmt { get; set; }
+        public string Ville { get; set; }
+        public string CodePost { get; set; }
+        public string TelPrinc { get; set; }
+        public string Mobile1 { get; set; }
+        public string Mobile2 { get; set; }
         public List<Animal> Animals { get; set; }
-
-        public bool CheckIfValid()
-        {
-            if (this.Nom1.Text == "" || this.TelPrinc.Text == "")
-            { return false; }
-            else
-            { return true; }
-        }
 
         public void AddClientToDB(FacturierDatabaseDataSet.ClientsDataTable DBClients)
         {
-            InfosClient = DBClients.NewClientsRow();
+            Id = DBClients.Rows[DBClients.Rows.Count - 1].Field<int>("IdClient") + 1;
+            FacturierDatabaseDataSet.ClientsRow InfosClient = DBClients.NewClientsRow();
             InfosClient.BeginEdit();
-            InfosClient.IdClient = DBClients.Rows[DBClients.Rows.Count - 1].Field<int>("IdClient") + 1;
-            InfosClient.Nom1 = this.Nom1.Text;
-            if (this.Nom2.Text == "") { InfosClient.SetNom2Null(); } else { InfosClient.Nom2 = this.Nom2.Text; }
-            if (this.Prenom1.Text == "") { InfosClient.SetPrenom1Null(); } else { InfosClient.Prenom1 = this.Prenom1.Text; }
-            if (this.Prenom2.Text == "") { InfosClient.SetPrenom2Null(); } else { InfosClient.Prenom2 = this.Prenom2.Text; }
-            if (this.NumAdr.Text == "") { InfosClient.SetNumAdrNull(); } else { InfosClient.NumAdr = this.NumAdr.Text; }
-            if (this.Rue.Text == "") { InfosClient.SetRueNull(); } else { InfosClient.Rue = this.Rue.Text; }
-            if (this.Cplmt.Text == "") { InfosClient.SetCplmtNull(); } else { InfosClient.Cplmt = this.Cplmt.Text; }
-            if (this.Ville.Text == "") { InfosClient.SetVilleNull(); } else { InfosClient.Ville = this.Ville.Text; }
-            if (this.CodePost.Text == "") { InfosClient.SetCodePostNull(); } else { InfosClient.CodePost = this.CodePost.Text; }
-            InfosClient.TelPrinc = this.TelPrinc.Text;
-            if (this.Mobile1.Text == "") { InfosClient.SetMobile1Null(); } else { InfosClient.Mobile1 = this.Mobile1.Text; }
-            if (this.Mobile2.Text == "") { InfosClient.SetMobile2Null(); } else { InfosClient.Mobile2 = this.Mobile2.Text; }
+            InfosClient.IdClient = Id;
+            InfosClient.Nom1 = Nom1;
+            if (Nom2 == "") { InfosClient.SetNom2Null(); } else { InfosClient.Nom2 = Nom2; }
+            if (Prenom1 == "") { InfosClient.SetPrenom1Null(); } else { InfosClient.Prenom1 = Prenom1; }
+            if (Prenom2 == "") { InfosClient.SetPrenom2Null(); } else { InfosClient.Prenom2 = Prenom2; }
+            if (NumAdr == "") { InfosClient.SetNumAdrNull(); } else { InfosClient.NumAdr = NumAdr; }
+            if (Rue == "") { InfosClient.SetRueNull(); } else { InfosClient.Rue = Rue; }
+            if (Cplmt == "") { InfosClient.SetCplmtNull(); } else { InfosClient.Cplmt = Cplmt; }
+            if (Ville == "") { InfosClient.SetVilleNull(); } else { InfosClient.Ville = Ville; }
+            if (CodePost == "") { InfosClient.SetCodePostNull(); } else { InfosClient.CodePost = CodePost; }
+            InfosClient.TelPrinc = TelPrinc;
+            if (Mobile1 == "") { InfosClient.SetMobile1Null(); } else { InfosClient.Mobile1 = Mobile1; }
+            if (Mobile2 == "") { InfosClient.SetMobile2Null(); } else { InfosClient.Mobile2 = Mobile2; }
             InfosClient.EndEdit();
             DBClients.AddClientsRow(InfosClient);
         }
 
-        public void EditClientInDB()
+        public void EditClientInDB(FacturierDatabaseDataSet.ClientsDataTable DBClients)
         {
+            FacturierDatabaseDataSet.ClientsRow InfosClient = DBClients.FindByIdClient(Id);
             InfosClient.BeginEdit();
-            InfosClient.Nom1 = this.Nom1.Text;
-            if (this.Nom2.Text == "") { InfosClient.SetNom2Null(); } else { InfosClient.Nom2 = this.Nom2.Text; }
-            if (this.Prenom1.Text == "") { InfosClient.SetPrenom1Null(); } else { InfosClient.Prenom1 = this.Prenom1.Text; }
-            if (this.Prenom2.Text == "") { InfosClient.SetPrenom2Null(); } else { InfosClient.Prenom2 = this.Prenom2.Text; }
-            if (this.NumAdr.Text == "") { InfosClient.SetNumAdrNull(); } else { InfosClient.NumAdr = this.NumAdr.Text; }
-            if (this.Rue.Text == "") { InfosClient.SetRueNull(); } else { InfosClient.Rue = this.Rue.Text; }
-            if (this.Cplmt.Text == "") { InfosClient.SetCplmtNull(); } else { InfosClient.Cplmt = this.Cplmt.Text; }
-            if (this.Ville.Text == "") { InfosClient.SetVilleNull(); } else { InfosClient.Ville = this.Ville.Text; }
-            if (this.CodePost.Text == "") { InfosClient.SetCodePostNull(); } else { InfosClient.CodePost = this.CodePost.Text; }
-            InfosClient.TelPrinc = this.TelPrinc.Text;
-            if (this.Mobile1.Text == "") { InfosClient.SetMobile1Null(); } else { InfosClient.Mobile1 = this.Mobile1.Text; }
-            if (this.Mobile2.Text == "") { InfosClient.SetMobile2Null(); } else { InfosClient.Mobile2 = this.Mobile2.Text; }
+            InfosClient.Nom1 = Nom1;
+            if (Nom2 == "") { InfosClient.SetNom2Null(); } else { InfosClient.Nom2 = Nom2; }
+            if (Prenom1 == "") { InfosClient.SetPrenom1Null(); } else { InfosClient.Prenom1 = Prenom1; }
+            if (Prenom2 == "") { InfosClient.SetPrenom2Null(); } else { InfosClient.Prenom2 = Prenom2; }
+            if (NumAdr == "") { InfosClient.SetNumAdrNull(); } else { InfosClient.NumAdr = NumAdr; }
+            if (Rue == "") { InfosClient.SetRueNull(); } else { InfosClient.Rue = Rue; }
+            if (Cplmt == "") { InfosClient.SetCplmtNull(); } else { InfosClient.Cplmt = Cplmt; }
+            if (Ville == "") { InfosClient.SetVilleNull(); } else { InfosClient.Ville = Ville; }
+            if (CodePost == "") { InfosClient.SetCodePostNull(); } else { InfosClient.CodePost = CodePost; }
+            InfosClient.TelPrinc = TelPrinc;
+            if (Mobile1 == "") { InfosClient.SetMobile1Null(); } else { InfosClient.Mobile1 = Mobile1; }
+            if (Mobile2 == "") { InfosClient.SetMobile2Null(); } else { InfosClient.Mobile2 = Mobile2; }
             InfosClient.EndEdit();
         }
 
-        public void FillClientChamps()
+        public void DeleteCFromDB(FacturierDatabaseDataSet.ClientsDataTable DBClients)
         {
-            this.Nom1.Text = InfosClient.Nom1;
-            if (InfosClient.IsNom2Null()) { this.Nom2.Text = ""; } else { this.Nom2.Text = InfosClient.Nom2; }
-            if (InfosClient.IsPrenom1Null()) { this.Prenom1.Text = ""; } else { this.Prenom1.Text = InfosClient.Prenom1; }
-            if (InfosClient.IsPrenom2Null()) { this.Prenom2.Text = ""; } else { this.Prenom2.Text = InfosClient.Prenom2; }
-            if (InfosClient.IsNumAdrNull()) { this.NumAdr.Text = ""; } else { this.NumAdr.Text = InfosClient.NumAdr; }
-            if (InfosClient.IsRueNull()) { this.Rue.Text = ""; } else { this.Rue.Text = InfosClient.Rue; }
-            if (InfosClient.IsCplmtNull()) { this.Cplmt.Text = ""; } else { this.Cplmt.Text = InfosClient.Cplmt; }
-            if (InfosClient.IsVilleNull()) { this.Ville.Text = ""; } else { this.Ville.Text = InfosClient.Ville; }
-            if (InfosClient.IsCodePostNull()) { this.CodePost.Text = ""; } else { this.CodePost.Text = InfosClient.CodePost; }
-            this.TelPrinc.Text = InfosClient.TelPrinc;
-            if (InfosClient.IsMobile1Null()) { this.Mobile1.Text = ""; } else { this.Mobile1.Text = InfosClient.Mobile1; }
-            if (InfosClient.IsMobile2Null()) { this.Mobile2.Text = ""; } else { this.Mobile2.Text = InfosClient.Mobile2; }
-        }
-
-        public void ClearClientChamps()
-        {
-            this.Nom1.Text = "";
-            this.Nom2.Text = "";
-            this.Prenom1.Text = "";
-            this.Prenom2.Text = "";
-            this.NumAdr.Text = "";
-            this.Rue.Text = "";
-            this.Cplmt.Text = "";
-            this.Ville.Text = "";
-            this.CodePost.Text = "";
-            this.TelPrinc.Text = "";
-            this.Mobile1.Text = "";
-            this.Mobile2.Text = "";
-        }
-
-        public bool WereChangesToCMade()
-        {
-            bool result = false;
-            if ((IsNew && Nom1.Text != "") || (!IsNew && Nom1.Text != InfosClient.Nom1)) { result = true; }
-            if (IsNew || InfosClient.IsNom2Null()) { if (Nom2.Text != "") { result = true; } } else { if (Nom2.Text != InfosClient.Nom2) { result = true; } }
-            if (IsNew || InfosClient.IsPrenom1Null()) { if (Prenom1.Text != "") { result = true; } } else { if (Prenom1.Text != InfosClient.Prenom1) { result = true; } }
-            if (IsNew || InfosClient.IsPrenom2Null()) { if (Prenom2.Text != "") { result = true; } } else { if (Prenom2.Text != InfosClient.Prenom2) { result = true; } }
-            if (IsNew || InfosClient.IsNumAdrNull()) { if (NumAdr.Text != "") { result = true; } } else { if (NumAdr.Text != InfosClient.NumAdr) { result = true; } }
-            if (IsNew || InfosClient.IsRueNull()) { if (Rue.Text != "") { result = true; } } else { if (Rue.Text != InfosClient.Rue) { result = true; } }
-            if (IsNew || InfosClient.IsCplmtNull()) { if (Cplmt.Text != "") { result = true; } } else { if (Cplmt.Text != InfosClient.Cplmt) { result = true; } }
-            if (IsNew || InfosClient.IsVilleNull()) { if (Ville.Text != "") { result = true; } } else { if (Ville.Text != InfosClient.Ville) { result = true; } }
-            if (IsNew || InfosClient.IsCodePostNull()) { if (CodePost.Text != "") { result = true; } } else { if (CodePost.Text != InfosClient.CodePost) { result = true; } }
-            if ((IsNew && TelPrinc.Text != "") || (!IsNew && TelPrinc.Text != InfosClient.TelPrinc)) { result = true; }
-            if (IsNew || InfosClient.IsMobile1Null()) { if (Mobile1.Text != "") { result = true; } } else { if (Mobile1.Text != InfosClient.Mobile1) { result = true; } }
-            if (IsNew || InfosClient.IsMobile2Null()) { if (Mobile2.Text != "") { result = true; } } else { if (Mobile2.Text != InfosClient.Mobile2) { result = true; } }
-            return result;
-        }
-
-        public void DeleteCFromDB()
-        {
-            if(!IsNew)
-            {
-                InfosClient.Delete();
-            }
+            FacturierDatabaseDataSet.ClientsRow InfosClient = DBClients.FindByIdClient(Id);
+            InfosClient.Delete();            
         }
     }
 }

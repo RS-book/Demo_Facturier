@@ -38,24 +38,23 @@
             this.button_editA = new System.Windows.Forms.Button();
             this.button_newA = new System.Windows.Forms.Button();
             this.groupBoxInfoAnimal = new System.Windows.Forms.GroupBox();
+            this.radioButtonAutre = new System.Windows.Forms.RadioButton();
+            this.radioButtonChat = new System.Windows.Forms.RadioButton();
+            this.radioButtonChien = new System.Windows.Forms.RadioButton();
+            this.ChampAAutre = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.ChampARace = new System.Windows.Forms.TextBox();
             this.ChampAParfum = new System.Windows.Forms.TextBox();
             this.buttonLastvisits = new System.Windows.Forms.Button();
             this.checkBoxParfum = new System.Windows.Forms.CheckBox();
             this.checkBoxFriand = new System.Windows.Forms.CheckBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.champARemarques = new System.Windows.Forms.RichTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.ChampANaiss = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.radioButtonAutre = new System.Windows.Forms.RadioButton();
-            this.radioButtonChat = new System.Windows.Forms.RadioButton();
-            this.radioButtonChien = new System.Windows.Forms.RadioButton();
-            this.ChampAAutre = new System.Windows.Forms.TextBox();
             this.ChampANom = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonEditC = new System.Windows.Forms.Button();
             this.buttonNewC = new System.Windows.Forms.Button();
             this.groupBoxInfoClient = new System.Windows.Forms.GroupBox();
             this.ChampMobile2 = new System.Windows.Forms.TextBox();
@@ -88,6 +87,8 @@
             this.input_rechercheClient = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonEditC = new System.Windows.Forms.Button();
+            this.buttonARDV = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBoxInfoAnimal.SuspendLayout();
@@ -104,11 +105,13 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(633, 430);
+            this.tabControl1.Size = new System.Drawing.Size(633, 440);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.buttonARDV);
+            this.tabPage1.Controls.Add(this.buttonEditC);
             this.tabPage1.Controls.Add(this.buttonLoadC);
             this.tabPage1.Controls.Add(this.buttonDeleteA);
             this.tabPage1.Controls.Add(this.buttonDeleteC);
@@ -117,7 +120,6 @@
             this.tabPage1.Controls.Add(this.button_editA);
             this.tabPage1.Controls.Add(this.button_newA);
             this.tabPage1.Controls.Add(this.groupBoxInfoAnimal);
-            this.tabPage1.Controls.Add(this.buttonEditC);
             this.tabPage1.Controls.Add(this.buttonNewC);
             this.tabPage1.Controls.Add(this.groupBoxInfoClient);
             this.tabPage1.Controls.Add(this.button_searchC);
@@ -126,7 +128,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(1);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(625, 404);
+            this.tabPage1.Size = new System.Drawing.Size(625, 414);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Clients";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -145,22 +147,22 @@
             // buttonDeleteA
             // 
             this.buttonDeleteA.Enabled = false;
-            this.buttonDeleteA.Location = new System.Drawing.Point(516, 357);
+            this.buttonDeleteA.Location = new System.Drawing.Point(529, 357);
             this.buttonDeleteA.Name = "buttonDeleteA";
-            this.buttonDeleteA.Size = new System.Drawing.Size(103, 41);
+            this.buttonDeleteA.Size = new System.Drawing.Size(90, 51);
             this.buttonDeleteA.TabIndex = 11;
-            this.buttonDeleteA.Text = "Supprimer (Animal)";
+            this.buttonDeleteA.Text = "Supprimer la fiche de l\'animal";
             this.buttonDeleteA.UseVisualStyleBackColor = true;
             this.buttonDeleteA.Click += new System.EventHandler(this.DeleteAnimal);
             // 
             // buttonDeleteC
             // 
             this.buttonDeleteC.Enabled = false;
-            this.buttonDeleteC.Location = new System.Drawing.Point(201, 357);
+            this.buttonDeleteC.Location = new System.Drawing.Point(176, 357);
             this.buttonDeleteC.Name = "buttonDeleteC";
-            this.buttonDeleteC.Size = new System.Drawing.Size(102, 41);
+            this.buttonDeleteC.Size = new System.Drawing.Size(73, 51);
             this.buttonDeleteC.TabIndex = 10;
-            this.buttonDeleteC.Text = "Supprimer (Client)";
+            this.buttonDeleteC.Text = "Supprimer la fiche client";
             this.buttonDeleteC.UseVisualStyleBackColor = true;
             this.buttonDeleteC.Click += new System.EventHandler(this.SupprimerC);
             // 
@@ -186,42 +188,42 @@
             // button_editA
             // 
             this.button_editA.Enabled = false;
-            this.button_editA.Location = new System.Drawing.Point(410, 357);
+            this.button_editA.Location = new System.Drawing.Point(269, 383);
             this.button_editA.Name = "button_editA";
-            this.button_editA.Size = new System.Drawing.Size(100, 41);
+            this.button_editA.Size = new System.Drawing.Size(158, 25);
             this.button_editA.TabIndex = 7;
-            this.button_editA.Text = "Enregistrer modifications";
+            this.button_editA.Text = "Éditer infomations animal";
             this.button_editA.UseVisualStyleBackColor = true;
             this.button_editA.Click += new System.EventHandler(this.EditAnimal);
             // 
             // button_newA
             // 
             this.button_newA.Enabled = false;
-            this.button_newA.Location = new System.Drawing.Point(310, 357);
+            this.button_newA.Location = new System.Drawing.Point(269, 357);
             this.button_newA.Name = "button_newA";
-            this.button_newA.Size = new System.Drawing.Size(94, 41);
+            this.button_newA.Size = new System.Drawing.Size(158, 24);
             this.button_newA.TabIndex = 6;
-            this.button_newA.Text = "Nouvel animal";
+            this.button_newA.Text = "Créer nouvel animal";
             this.button_newA.UseVisualStyleBackColor = true;
             this.button_newA.Click += new System.EventHandler(this.CreerAnimal);
             // 
             // groupBoxInfoAnimal
             // 
+            this.groupBoxInfoAnimal.Controls.Add(this.radioButtonAutre);
+            this.groupBoxInfoAnimal.Controls.Add(this.radioButtonChat);
+            this.groupBoxInfoAnimal.Controls.Add(this.radioButtonChien);
+            this.groupBoxInfoAnimal.Controls.Add(this.ChampAAutre);
             this.groupBoxInfoAnimal.Controls.Add(this.label18);
             this.groupBoxInfoAnimal.Controls.Add(this.ChampARace);
             this.groupBoxInfoAnimal.Controls.Add(this.ChampAParfum);
             this.groupBoxInfoAnimal.Controls.Add(this.buttonLastvisits);
             this.groupBoxInfoAnimal.Controls.Add(this.checkBoxParfum);
             this.groupBoxInfoAnimal.Controls.Add(this.checkBoxFriand);
-            this.groupBoxInfoAnimal.Controls.Add(this.richTextBox1);
+            this.groupBoxInfoAnimal.Controls.Add(this.champARemarques);
             this.groupBoxInfoAnimal.Controls.Add(this.label17);
             this.groupBoxInfoAnimal.Controls.Add(this.ChampANaiss);
             this.groupBoxInfoAnimal.Controls.Add(this.label16);
             this.groupBoxInfoAnimal.Controls.Add(this.label5);
-            this.groupBoxInfoAnimal.Controls.Add(this.radioButtonAutre);
-            this.groupBoxInfoAnimal.Controls.Add(this.radioButtonChat);
-            this.groupBoxInfoAnimal.Controls.Add(this.radioButtonChien);
-            this.groupBoxInfoAnimal.Controls.Add(this.ChampAAutre);
             this.groupBoxInfoAnimal.Controls.Add(this.ChampANom);
             this.groupBoxInfoAnimal.Controls.Add(this.label4);
             this.groupBoxInfoAnimal.Enabled = false;
@@ -231,6 +233,49 @@
             this.groupBoxInfoAnimal.TabIndex = 5;
             this.groupBoxInfoAnimal.TabStop = false;
             this.groupBoxInfoAnimal.Text = "Animal";
+            // 
+            // radioButtonAutre
+            // 
+            this.radioButtonAutre.AutoSize = true;
+            this.radioButtonAutre.Enabled = false;
+            this.radioButtonAutre.Location = new System.Drawing.Point(120, 19);
+            this.radioButtonAutre.Name = "radioButtonAutre";
+            this.radioButtonAutre.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonAutre.TabIndex = 23;
+            this.radioButtonAutre.Text = "Autre :";
+            this.radioButtonAutre.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonChat
+            // 
+            this.radioButtonChat.AutoSize = true;
+            this.radioButtonChat.Enabled = false;
+            this.radioButtonChat.Location = new System.Drawing.Point(67, 19);
+            this.radioButtonChat.Name = "radioButtonChat";
+            this.radioButtonChat.Size = new System.Drawing.Size(47, 17);
+            this.radioButtonChat.TabIndex = 22;
+            this.radioButtonChat.Text = "Chat";
+            this.radioButtonChat.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonChien
+            // 
+            this.radioButtonChien.AutoSize = true;
+            this.radioButtonChien.Checked = true;
+            this.radioButtonChien.Enabled = false;
+            this.radioButtonChien.Location = new System.Drawing.Point(9, 19);
+            this.radioButtonChien.Name = "radioButtonChien";
+            this.radioButtonChien.Size = new System.Drawing.Size(52, 17);
+            this.radioButtonChien.TabIndex = 21;
+            this.radioButtonChien.TabStop = true;
+            this.radioButtonChien.Text = "Chien";
+            this.radioButtonChien.UseVisualStyleBackColor = true;
+            // 
+            // ChampAAutre
+            // 
+            this.ChampAAutre.Location = new System.Drawing.Point(182, 18);
+            this.ChampAAutre.Name = "ChampAAutre";
+            this.ChampAAutre.ReadOnly = true;
+            this.ChampAAutre.Size = new System.Drawing.Size(120, 20);
+            this.ChampAAutre.TabIndex = 20;
             // 
             // label18
             // 
@@ -245,6 +290,7 @@
             // 
             this.ChampARace.Location = new System.Drawing.Point(117, 44);
             this.ChampARace.Name = "ChampARace";
+            this.ChampARace.ReadOnly = true;
             this.ChampARace.Size = new System.Drawing.Size(186, 20);
             this.ChampARace.TabIndex = 18;
             // 
@@ -252,6 +298,7 @@
             // 
             this.ChampAParfum.Location = new System.Drawing.Point(72, 145);
             this.ChampAParfum.Name = "ChampAParfum";
+            this.ChampAParfum.ReadOnly = true;
             this.ChampAParfum.Size = new System.Drawing.Size(86, 20);
             this.ChampAParfum.TabIndex = 17;
             // 
@@ -267,17 +314,18 @@
             // checkBoxParfum
             // 
             this.checkBoxParfum.AutoSize = true;
+            this.checkBoxParfum.Enabled = false;
             this.checkBoxParfum.Location = new System.Drawing.Point(9, 147);
             this.checkBoxParfum.Name = "checkBoxParfum";
             this.checkBoxParfum.Size = new System.Drawing.Size(65, 17);
             this.checkBoxParfum.TabIndex = 15;
             this.checkBoxParfum.Text = "Parfum :";
             this.checkBoxParfum.UseVisualStyleBackColor = true;
-            this.checkBoxParfum.CheckedChanged += new System.EventHandler(this.ToggleChampP);
             // 
             // checkBoxFriand
             // 
             this.checkBoxFriand.AutoSize = true;
+            this.checkBoxFriand.Enabled = false;
             this.checkBoxFriand.Location = new System.Drawing.Point(9, 122);
             this.checkBoxFriand.Name = "checkBoxFriand";
             this.checkBoxFriand.Size = new System.Drawing.Size(73, 17);
@@ -285,14 +333,15 @@
             this.checkBoxFriand.Text = "Friandises";
             this.checkBoxFriand.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // champARemarques
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 183);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox1.Size = new System.Drawing.Size(297, 84);
-            this.richTextBox1.TabIndex = 11;
-            this.richTextBox1.Text = "";
+            this.champARemarques.Location = new System.Drawing.Point(6, 183);
+            this.champARemarques.Name = "champARemarques";
+            this.champARemarques.ReadOnly = true;
+            this.champARemarques.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.champARemarques.Size = new System.Drawing.Size(297, 84);
+            this.champARemarques.TabIndex = 11;
+            this.champARemarques.Text = "";
             // 
             // label17
             // 
@@ -307,6 +356,7 @@
             // 
             this.ChampANaiss.Location = new System.Drawing.Point(117, 96);
             this.ChampANaiss.Name = "ChampANaiss";
+            this.ChampANaiss.ReadOnly = true;
             this.ChampANaiss.Size = new System.Drawing.Size(186, 20);
             this.ChampANaiss.TabIndex = 9;
             // 
@@ -328,50 +378,11 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "* : champs optionnels";
             // 
-            // radioButtonAutre
-            // 
-            this.radioButtonAutre.AutoSize = true;
-            this.radioButtonAutre.Location = new System.Drawing.Point(121, 19);
-            this.radioButtonAutre.Name = "radioButtonAutre";
-            this.radioButtonAutre.Size = new System.Drawing.Size(56, 17);
-            this.radioButtonAutre.TabIndex = 6;
-            this.radioButtonAutre.Text = "Autre :";
-            this.radioButtonAutre.UseVisualStyleBackColor = true;
-            this.radioButtonAutre.CheckedChanged += new System.EventHandler(this.ToggleChampE);
-            // 
-            // radioButtonChat
-            // 
-            this.radioButtonChat.AutoSize = true;
-            this.radioButtonChat.Location = new System.Drawing.Point(68, 19);
-            this.radioButtonChat.Name = "radioButtonChat";
-            this.radioButtonChat.Size = new System.Drawing.Size(47, 17);
-            this.radioButtonChat.TabIndex = 5;
-            this.radioButtonChat.Text = "Chat";
-            this.radioButtonChat.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonChien
-            // 
-            this.radioButtonChien.AutoSize = true;
-            this.radioButtonChien.Checked = true;
-            this.radioButtonChien.Location = new System.Drawing.Point(10, 19);
-            this.radioButtonChien.Name = "radioButtonChien";
-            this.radioButtonChien.Size = new System.Drawing.Size(52, 17);
-            this.radioButtonChien.TabIndex = 4;
-            this.radioButtonChien.TabStop = true;
-            this.radioButtonChien.Text = "Chien";
-            this.radioButtonChien.UseVisualStyleBackColor = true;
-            // 
-            // ChampAAutre
-            // 
-            this.ChampAAutre.Location = new System.Drawing.Point(183, 18);
-            this.ChampAAutre.Name = "ChampAAutre";
-            this.ChampAAutre.Size = new System.Drawing.Size(120, 20);
-            this.ChampAAutre.TabIndex = 3;
-            // 
             // ChampANom
             // 
             this.ChampANom.Location = new System.Drawing.Point(117, 70);
             this.ChampANom.Name = "ChampANom";
+            this.ChampANom.ReadOnly = true;
             this.ChampANom.Size = new System.Drawing.Size(186, 20);
             this.ChampANom.TabIndex = 1;
             // 
@@ -384,24 +395,13 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Nom";
             // 
-            // buttonEditC
-            // 
-            this.buttonEditC.Enabled = false;
-            this.buttonEditC.Location = new System.Drawing.Point(101, 357);
-            this.buttonEditC.Name = "buttonEditC";
-            this.buttonEditC.Size = new System.Drawing.Size(96, 41);
-            this.buttonEditC.TabIndex = 4;
-            this.buttonEditC.Text = "Enregistrer modifications";
-            this.buttonEditC.UseVisualStyleBackColor = true;
-            this.buttonEditC.Click += new System.EventHandler(this.EditClient);
-            // 
             // buttonNewC
             // 
             this.buttonNewC.Location = new System.Drawing.Point(8, 357);
             this.buttonNewC.Name = "buttonNewC";
-            this.buttonNewC.Size = new System.Drawing.Size(89, 41);
+            this.buttonNewC.Size = new System.Drawing.Size(162, 24);
             this.buttonNewC.TabIndex = 3;
-            this.buttonNewC.Text = "Nouveau client";
+            this.buttonNewC.Text = "Créer nouveau client";
             this.buttonNewC.UseVisualStyleBackColor = true;
             this.buttonNewC.Click += new System.EventHandler(this.CreerClient);
             // 
@@ -435,6 +435,7 @@
             // 
             this.ChampMobile2.Location = new System.Drawing.Point(71, 278);
             this.ChampMobile2.Name = "ChampMobile2";
+            this.ChampMobile2.ReadOnly = true;
             this.ChampMobile2.Size = new System.Drawing.Size(223, 20);
             this.ChampMobile2.TabIndex = 15;
             // 
@@ -442,6 +443,7 @@
             // 
             this.ChampMobile1.Location = new System.Drawing.Point(71, 252);
             this.ChampMobile1.Name = "ChampMobile1";
+            this.ChampMobile1.ReadOnly = true;
             this.ChampMobile1.Size = new System.Drawing.Size(223, 20);
             this.ChampMobile1.TabIndex = 14;
             // 
@@ -449,6 +451,7 @@
             // 
             this.ChampTelPrinc.Location = new System.Drawing.Point(71, 226);
             this.ChampTelPrinc.Name = "ChampTelPrinc";
+            this.ChampTelPrinc.ReadOnly = true;
             this.ChampTelPrinc.Size = new System.Drawing.Size(223, 20);
             this.ChampTelPrinc.TabIndex = 13;
             // 
@@ -510,6 +513,7 @@
             // 
             this.ChampPrenom2.Location = new System.Drawing.Point(71, 95);
             this.ChampPrenom2.Name = "ChampPrenom2";
+            this.ChampPrenom2.ReadOnly = true;
             this.ChampPrenom2.Size = new System.Drawing.Size(223, 20);
             this.ChampPrenom2.TabIndex = 6;
             // 
@@ -517,6 +521,7 @@
             // 
             this.ChampNom2.Location = new System.Drawing.Point(71, 69);
             this.ChampNom2.Name = "ChampNom2";
+            this.ChampNom2.ReadOnly = true;
             this.ChampNom2.Size = new System.Drawing.Size(223, 20);
             this.ChampNom2.TabIndex = 5;
             // 
@@ -524,6 +529,7 @@
             // 
             this.ChampPrenom1.Location = new System.Drawing.Point(71, 43);
             this.ChampPrenom1.Name = "ChampPrenom1";
+            this.ChampPrenom1.ReadOnly = true;
             this.ChampPrenom1.Size = new System.Drawing.Size(223, 20);
             this.ChampPrenom1.TabIndex = 4;
             // 
@@ -531,6 +537,7 @@
             // 
             this.ChampNom1.Location = new System.Drawing.Point(71, 17);
             this.ChampNom1.Name = "ChampNom1";
+            this.ChampNom1.ReadOnly = true;
             this.ChampNom1.Size = new System.Drawing.Size(223, 20);
             this.ChampNom1.TabIndex = 3;
             // 
@@ -575,6 +582,7 @@
             // 
             this.ChampVille.Location = new System.Drawing.Point(167, 69);
             this.ChampVille.Name = "ChampVille";
+            this.ChampVille.ReadOnly = true;
             this.ChampVille.Size = new System.Drawing.Size(115, 20);
             this.ChampVille.TabIndex = 9;
             // 
@@ -591,6 +599,7 @@
             // 
             this.ChampCodePost.Location = new System.Drawing.Point(71, 69);
             this.ChampCodePost.Name = "ChampCodePost";
+            this.ChampCodePost.ReadOnly = true;
             this.ChampCodePost.Size = new System.Drawing.Size(58, 20);
             this.ChampCodePost.TabIndex = 7;
             // 
@@ -607,6 +616,7 @@
             // 
             this.ChampCpl.Location = new System.Drawing.Point(32, 43);
             this.ChampCpl.Name = "ChampCpl";
+            this.ChampCpl.ReadOnly = true;
             this.ChampCpl.Size = new System.Drawing.Size(250, 20);
             this.ChampCpl.TabIndex = 5;
             // 
@@ -623,6 +633,7 @@
             // 
             this.ChampRue.Location = new System.Drawing.Point(113, 17);
             this.ChampRue.Name = "ChampRue";
+            this.ChampRue.ReadOnly = true;
             this.ChampRue.Size = new System.Drawing.Size(169, 20);
             this.ChampRue.TabIndex = 3;
             // 
@@ -639,6 +650,7 @@
             // 
             this.ChampN.Location = new System.Drawing.Point(32, 17);
             this.ChampN.Name = "ChampN";
+            this.ChampN.ReadOnly = true;
             this.ChampN.Size = new System.Drawing.Size(42, 20);
             this.ChampN.TabIndex = 1;
             // 
@@ -691,11 +703,32 @@
             this.tabPage3.Text = "Factures";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // buttonEditC
+            // 
+            this.buttonEditC.Enabled = false;
+            this.buttonEditC.Location = new System.Drawing.Point(9, 383);
+            this.buttonEditC.Name = "buttonEditC";
+            this.buttonEditC.Size = new System.Drawing.Size(161, 25);
+            this.buttonEditC.TabIndex = 13;
+            this.buttonEditC.Text = "Éditer informations client";
+            this.buttonEditC.UseVisualStyleBackColor = true;
+            this.buttonEditC.Click += new System.EventHandler(this.EditClient);
+            // 
+            // buttonARDV
+            // 
+            this.buttonARDV.Enabled = false;
+            this.buttonARDV.Location = new System.Drawing.Point(433, 357);
+            this.buttonARDV.Name = "buttonARDV";
+            this.buttonARDV.Size = new System.Drawing.Size(90, 51);
+            this.buttonARDV.TabIndex = 14;
+            this.buttonARDV.Text = "Créer rendez-vous";
+            this.buttonARDV.UseVisualStyleBackColor = true;
+            // 
             // FormP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 430);
+            this.ClientSize = new System.Drawing.Size(633, 440);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.Name = "FormP";
@@ -725,12 +758,10 @@
         private System.Windows.Forms.Button button_editA;
         private System.Windows.Forms.Button button_newA;
         private System.Windows.Forms.GroupBox groupBoxInfoAnimal;
-        private System.Windows.Forms.Button buttonEditC;
         private System.Windows.Forms.Button buttonNewC;
         private System.Windows.Forms.GroupBox groupBoxInfoClient;
         private System.Windows.Forms.Button button_searchC;
         private System.Windows.Forms.TextBox input_rechercheClient;
-        private System.Windows.Forms.TextBox ChampAAutre;
         private System.Windows.Forms.TextBox ChampANom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ChampMobile2;
@@ -762,10 +793,7 @@
         private System.Windows.Forms.TextBox ChampANaiss;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton radioButtonAutre;
-        private System.Windows.Forms.RadioButton radioButtonChat;
-        private System.Windows.Forms.RadioButton radioButtonChien;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox champARemarques;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox checkBoxParfum;
         private System.Windows.Forms.CheckBox checkBoxFriand;
@@ -776,6 +804,12 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox ChampARace;
         private System.Windows.Forms.Button buttonLoadC;
+        private System.Windows.Forms.RadioButton radioButtonAutre;
+        private System.Windows.Forms.RadioButton radioButtonChat;
+        private System.Windows.Forms.RadioButton radioButtonChien;
+        private System.Windows.Forms.TextBox ChampAAutre;
+        private System.Windows.Forms.Button buttonARDV;
+        private System.Windows.Forms.Button buttonEditC;
     }
 }
 
